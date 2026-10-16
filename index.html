@@ -3,198 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Services Marketplace</title>
-    <!-- Tailwind CSS for modern styling -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>UrbanCrew | Professional Cleaning Services in Vilnius</title>
+    <!-- Tailwind CSS (Stable v3 CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-
-    <!-- TOP HEADER / LOCATION BAR -->
-    <header class="bg-white shadow-xs sticky top-0 z-40">
-        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <span class="text-2xl font-black text-indigo-600 tracking-tight">HomeServ</span>
-            </div>
-            <div class="flex items-center space-x-2 bg-gray-100 px-3 py-2 rounded-lg text-sm cursor-pointer hover:bg-gray-200 transition">
-                <i class="fa-solid fa-location-dot text-indigo-600"></i>
-                <span id="current-location" class="font-medium">New York, 10001</span>
-                <i class="fa-solid fa-chevron-down text-xs text-gray-500"></i>
-            </div>
-            <button onclick="toggleCart()" class="relative bg-indigo-50 text-indigo-600 p-2.5 rounded-full hover:bg-indigo-100 transition">
-                <i class="fa-solid fa-bag-shopping text-lg"></i>
-                <span id="cart-badge" class="absolute -top-1 -right-1 bg-indigo-600 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full font-bold hidden">0</span>
-            </button>
-        </div>
-    </header>
-
-    <!-- MAIN CONTENT CONTAINER -->
-    <main class="max-w-6xl mx-auto px-4 py-6 space-y-8">
-
-        <!-- SEARCH SECTION -->
-        <div class="bg-indigo-900 rounded-2xl p-6 text-white text-center space-y-4 shadow-md">
-            <h1 class="text-2xl md:text-3xl font-bold">Home services, on demand.</h1>
-            <p class="text-indigo-200 text-sm">Professional cleaners, salon experts, and technicians at your doorstep</p>
-            <div class="relative max-w-xl mx-auto">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-gray-400"></i>
-                <input type="text" placeholder="Search for 'AC Repair', 'Salon for Women', 'Deep Cleaning'..." class="w-full bg-white text-gray-800 pl-11 pr-4 py-3 rounded-xl focus:outline-hidden shadow-inner text-sm">
-            </div>
-        </div>
-
-        <!-- CATEGORIES GRID -->
-        <section>
-            <h2 class="text-lg font-bold mb-4">What are you looking for?</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div onclick="filterCategory('Cleaning')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:shadow-md cursor-pointer transition text-center space-y-2">
-                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto text-xl">
-                        <i class="fa-solid fa-broom"></i>
-                    </div>
-                    <h3 class="font-semibold text-sm">Cleaning & Pest</h3>
-                </div>
-                <div onclick="filterCategory('Salon')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:shadow-md cursor-pointer transition text-center space-y-2">
-                    <div class="w-12 h-12 bg-pink-50 text-pink-600 rounded-full flex items-center justify-center mx-auto text-xl">
-                        <i class="fa-solid fa-scissors"></i>
-                    </div>
-                    <h3 class="font-semibold text-sm">Salon & Spa</h3>
-                </div>
-                <div onclick="filterCategory('Appliance')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:shadow-md cursor-pointer transition text-center space-y-2">
-                    <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center mx-auto text-xl">
-                        <i class="fa-solid fa-screwdriver-wrench"></i>
-                    </div>
-                    <h3 class="font-semibold text-sm">AC & Appliance</h3>
-                </div>
-                <div onclick="filterCategory('Plumbing')" class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs hover:shadow-md cursor-pointer transition text-center space-y-2">
-                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-xl">
-                        <i class="fa-solid fa-faucet-drip"></i>
-                    </div>
-                    <h3 class="font-semibold text-sm">Plumbing & Carpentry</h3>
-                </div>
-            </div>
-        </section>
-
-        <!-- SERVICES LIST -->
-        <section>
-            <div class="flex justify-between items-center mb-4">
-                <h2 id="section-title" class="text-lg font-bold">Popular Services</h2>
-                <span class="text-xs text-indigo-600 font-semibold cursor-pointer">View All</span>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="services-container">
-                <!-- Service Item 1 -->
-                <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs flex justify-between items-center">
-                    <div class="space-y-1">
-                        <span class="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded font-medium">Cleaning & Pest</span>
-                        <h3 class="font-bold text-gray-900">Full Home Deep Cleaning</h3>
-                        <p class="text-xs text-gray-500"><i class="fa-solid fa-star text-amber-400"></i> 4.8 (12.4k reviews)</p>
-                        <p class="text-sm font-bold text-gray-900 pt-1">$49.00</p>
-                    </div>
-                    <button onclick="addToCart('Full Home Deep Cleaning', 49.00)" class="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-indigo-600 hover:text-white transition">
-                        Add
-                    </button>
-                </div>
-
-                <!-- Service Item 2 -->
-                <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-xs flex justify-between items-center">
-                    <div class="space-y-1">
-                        <span class="text-xs bg-amber-50 text-amber-700 px-2 py-0.5 rounded font-medium">AC & Appliance</span>
-                        <h3 class="font-bold text-gray-900">AC Power Jet Service</h3>
-                        <p class="text-xs text-gray-500"><i class="fa-solid fa-star text-amber-400"></i> 4.7 (8.1k reviews)</p>
-                        <p class="text-sm font-bold text-gray-900 pt-1">$25.00</p>
-                    </div>
-                    <button onclick="addToCart('AC Power Jet Service', 25.00)" class="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-lg font-semibold text-sm hover:bg-indigo-600 hover:text-white transition">
-                        Add
-                    </button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- CART / CHECKOUT SLIDER DRAWER -->
-    <div id="cart-drawer" class="fixed inset-y-0 right-0 w-full md:w-96 bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
-        <div class="p-4 border-b border-gray-100 flex justify-between items-center">
-            <h3 class="font-bold text-lg">Your Cart</h3>
-            <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600 text-lg"><i class="fa-solid fa-xmark"></i></button>
-        </div>
+    
+    <style>
+        .dark-teal { background-color: #0d3b3f; }
+        .text-gold { color: #d4af37; }
+        .gold-gradient { background: linear-gradient(135deg, #f3e7c4 0%, #d4af37 50%, #aa7c11 100%); }
+        .lang-btn { cursor: pointer; transition: color 0.3s ease; }
         
-        <div id="cart-items" class="p-4 flex-1 overflow-y-auto space-y-3">
-            <p class="text-gray-400 text-sm text-center py-10">Your cart is empty.</p>
-        </div>
+        /* Language Toggling Control */
+        body.lang-en .lt { display: none !important; }
+        body.lang-en .en { display: inline-block; }
+        
+        body.lang-lt .en { display: none !important; }
+        body.lang-lt .lt { display: inline-block; }
 
-        <div class="p-4 border-t border-gray-100 bg-gray-50 space-y-3">
-            <div class="flex justify-between font-bold text-base">
-                <span>Total:</span>
-                <span id="cart-total">$0.00</span>
-            </div>
-            <button onclick="checkout()" class="w-full bg-indigo-600 text-white py-3 rounded-xl font-bold hover:bg-indigo-700 transition">
-                Proceed to Slot Booking
-            </button>
+        .company-logo { height: 70px; }
+        .title-display { font-weight: 900; letter-spacing: -0.05em; text-transform: uppercase; }
+        .title-subline { font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+        .attractive-header { font-weight: 900; letter-spacing: -0.05em; text-transform: uppercase; border-left-width: 8px; border-color: #d4af37; padding-left: 1.5rem; }
+        .premium-text { color: #666; font-weight: 400; }
+        .contact-btn { font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; text-shadow: 0 1px 1px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body class="bg-[#fafafa] text-gray-900 leading-relaxed font-sans lang-en">
+
+    <!-- Top Bar -->
+    <div class="bg-black text-white px-6 py-2.5 flex justify-between items-center text-[11px] font-bold uppercase tracking-[0.2em]">
+        <div class="flex items-center gap-2">
+            <i class="fas fa-map-marker-alt text-gold" aria-hidden="true"></i> Vilnius, Lithuania
+        </div>
+        <div class="flex gap-4">
+            <button id="en-btn" onclick="setLanguage('en')" class="lang-btn text-gold underline font-bold" aria-label="Switch to English">EN</button>
+            <button id="lt-btn" onclick="setLanguage('lt')" class="lang-btn text-gray-400 hover:text-white" aria-label="Switch to Lithuanian">LT</button>
         </div>
     </div>
 
-    <!-- SIMPLE JAVASCRIPT LOGIC -->
-    <script>
-        let cart = [];
+    <!-- Navigation -->
+    <nav class="bg-white px-6 py-3 text-white flex justify-between items-center sticky top-0 z-50 shadow-md border-b border-gray-100">
+        <div class="flex items-center">
+            <img src="https://i.postimg.cc/SNrph9CJ/1776267111494.png" alt="UrbanCrew Logo" class="company-logo object-contain">
+        </div>
+        <div>
+            <a href="https://wa.me/37064399422" target="_blank" rel="noopener noreferrer" class="gold-gradient text-black px-8 py-3 rounded-full shadow-[0_10px_20px_rgba(212,175,55,0.3)] hover:brightness-110 transition-all contact-btn text-xs inline-block">
+                <span class="en">CONTACT US</span><span class="lt">KONTAKTAI</span>
+            </a>
+        </div>
+    </nav>
 
-        function toggleCart() {
-            const drawer = document.getElementById('cart-drawer');
-            drawer.classList.toggle('translate-x-full');
-        }
+    <!-- Header Section -->
+    <header class="py-16 bg-white text-center border-b border-gray-100 px-4">
+        <h1 class="text-4xl md:text-5xl title-display text-[#0d3b3f]">
+            <span class="en">Quality Service at <br><span class="gold-gradient text-transparent bg-clip-text italic">Affordable Prices</span></span>
+            <span class="lt">Kokybiškos paslaugos <br><span class="text-gold italic">už prieinamą kainą</span></span>
+        </h1>
+    </header>
 
-        function addToCart(name, price) {
-            cart.push({ name, price });
-            updateCartUI();
-            toggleCart(); // Open cart automatically when item added
-        }
+    <!-- General Clean Pricing -->
+    <section class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="flex items-center gap-4 mb-12">
+            <div class="h-1 w-20 gold-gradient"></div>
+            <h2 class="text-2xl title-display text-teal-900 tracking-wider">
+                <span class="en">General Cleaning</span><span class="lt">Paprastas Valymas</span>
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-sm text-center border border-gray-100">
+                <h3 class="title-subline text-gray-500 text-xs mb-2">
+                    <span class="en">Studio / 1 Room</span><span class="lt">Studija / 1 Kambarys</span>
+                </h3>
+                <div class="text-4xl title-display text-teal-900">€50</div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm text-center border-t-4 border-gold border-x border-b border-gray-100">
+                <h3 class="title-subline text-gray-500 text-xs mb-2">
+                    <span class="en">2 Room Apartment</span><span class="lt">2 Kambarių butas</span>
+                </h3>
+                <div class="text-4xl title-display text-teal-900">€60</div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm text-center border border-gray-100">
+                <h3 class="title-subline text-gray-500 text-xs mb-2">
+                    <span class="en">3 Room Apartment</span><span class="lt">3 Kambarių butas</span>
+                </h3>
+                <div class="text-4xl title-display text-teal-900">€70</div>
+            </div>
+        </div>
+    </section>
 
-        function updateCartUI() {
-            const container = document.getElementById('cart-items');
-            const badge = document.getElementById('cart-badge');
-            const totalElement = document.getElementById('cart-total');
+    <!-- Deep Restoration Pricing -->
+    <section class="py-16 px-6 max-w-7xl mx-auto">
+        <div class="flex items-center gap-4 mb-12">
+            <div class="h-1 w-20 gold-gradient"></div>
+            <h2 class="text-2xl title-display text-teal-900 tracking-wider">
+                <span class="en">Deep Restoration</span><span class="lt">Giluminis Valymas</span>
+            </h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-sm text-center border-t-4 border-gold border-x border-b border-gray-100">
+                <h3 class="title-subline text-gray-500 text-xs mb-2">
+                    <span class="en">Studio / 1 Room</span><span class="lt">Studija / 1 Kambarys</span>
+                </h3>
+                <div class="text-4xl title-display text-teal-900">€140</div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm text-center border border-gray-100">
+                <h3 class="title-subline text-gray-500 text-xs mb-2">
+                    <span class="en">2 Room Apartment</span><span class="lt">2 Kambarių butas</span>
+                </h3>
+                <div class="text-4xl title-display text-teal-900">€180</div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-sm text-center border-t-4 border-gold border-x border-b border-gray-100">
+                <h3 class="title-subline text-gray-500 text-xs mb-2">
+                    <span class="en">3 Room Apartment</span><span class="lt">3 Kambarių butas</span>
+                </h3>
+                <div class="text-4xl title-display text-teal-900">€220</div>
+            </div>
+        </div>
+    </section>
 
-            if (cart.length === 0) {
-                container.innerHTML = `<p class="text-gray-400 text-sm text-center py-10">Your cart is empty.</p>`;
-                badge.classList.add('hidden');
-                totalElement.textContent = '$0.00';
-                return;
-            }
+    <!-- Subscription Tier -->
+    <section class="py-16 px-6 max-w-7xl mx-auto bg-gray-100 rounded-[3rem] border border-gray-200 my-8">
+        <div class="flex items-center gap-4 mb-12 px-6">
+            <div class="h-1 w-20 gold-gradient"></div>
+            <h2 class="text-2xl title-display text-teal-900 tracking-wider">
+                <span class="en">Monthly Subscriptions</span><span class="lt">Mėnesiniai Abonentai</span>
+            </h2>
+        </div>
+        <div class="grid lg:grid-cols-3 gap-8 px-6">
+            <!-- Studio Subscription -->
+            <div class="bg-white p-8 rounded-3xl shadow-xl relative overflow-hidden">
+                <div class="gold-gradient h-2 w-full absolute top-0 left-0"></div>
+                <h3 class="title-display text-xl mb-1 uppercase">
+                    <span class="en">Studio / 1 Room</span><span class="lt">Studija / 1 Kambarys</span>
+                </h3>
+                <div class="text-3xl title-display gold-gradient text-transparent bg-clip-text mb-6">€270<span class="text-sm opacity-50">/<span class="en">mo</span><span class="lt">mėn</span></span></div>
+                <ul class="text-sm space-y-4 premium-text mb-8">
+                    <li><i class="fas fa-check text-gold mr-2" aria-hidden="true"></i> <span class="en">Incl. 3 General + 1 Deep Clean</span><span class="lt">Įskaičiuoti 3 paprasti + 1 giluminis valymas</span></li>
+                    <li><i class="fas fa-check text-gold mr-2" aria-hidden="true"></i> <span class="en">Guaranteed weekly slot</span><span class="lt">Garantuotas savaitinis laikas</span></li>
+                    <li><i class="fas fa-check text-gold mr-2" aria-hidden="true"></i> <span class="en">Assigned pro clean team</span><span class="lt">Priskirta profesionalų komanda</span></li>
+                </ul>
+            </div>
+            <!-- 2 Rooms Subscription -->
+            <div class="dark-teal p-8 rounded-3xl shadow-xl relative overflow-hidden text-white">
+                <div class="gold-gradient h-2 w-full absolute top-0 left-0"></div>
+                <h3 class="title-display text-xl mb-1 uppercase">
+                    <span class="en">2 Rooms</span><span class="lt">2 Kambariai</span>
+                </h3>
+                <div class="text-3xl title-display text-gold mb-6">€340<span class="text-sm opacity-50">/<span class="en">mo</span><span class="lt">mėn</span></span></div>
+                <ul class="text-sm space-y-4 opacity-90 mb-8">
+                    <li><i class="fas fa-check text-gold mr-2" aria-hidden="true"></i> <span class="en">Incl. 3 General + 1 Deep Clean</span><span class="lt">Įskaičiuoti 3 paprasti + 1 giluminis valymas</span></li>
+                    <li><i class="fas fa-check text-gold mr-2" aria-hidden="true"></i> <span class="en">Guaranteed weekly slot</span><span class="lt">Garantuotas savaitinis laikas</span></li>
+                    <li><i class="fas fa-check text-gold mr-2" aria-hidden="true"></i> <span class="en">Assigned pro clean team</span><span class="lt">Priskirta profesionalų komanda</span></li>
+                </ul>
+            </div>
+            <!-- 3 Rooms Subscription -->
+            <div class="bg-white p-8 rounded-3xl shadow-xl relative overflow-hidden">
+                <div class="gold-gradient h-2 w-full absolute top-0 left-0"></div>
+                <h3 class="title-display text-xl mb-1 uppercase">
+                    <span class="en">3 Rooms</span><span class="lt">3 Kambariai</span>
+                </h3>
+                <div class="text-3xl title-display gold-gradient text-transparent bg-clip-text mb-6">€400<span class="text-sm opacity-50">/<span class="en">mo</span><span class="lt">mėn</span></span></div>
+                <ul class="text-sm space-y-4 premium-text mb-8">
+                    <li><i class="fas fa-check text-gold mr-2" aria-hidden="true"></i> <span class="en">Incl. 3 General + 1 Deep Clean</span><span class="lt">Įskaičiuoti 3 paprasti + 1 giluminis valymas</span></li>
+                    <li><i class="fas fa-check text-gold mr-2" aria-hidden="true"></i> <span class="en">Guaranteed weekly slot</span><span class="lt">Garantuotas savaitinis laikas</span></li>
+                    <li><i class="fas fa-check text-gold mr-2" aria-hidden="true"></i> <span class="en">Assigned pro clean team</span><span class="lt">Priskirta profesionalų komanda</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-            badge.classList.remove('hidden');
-            badge.textContent = cart.length;
-
-            let total = 0;
-            container.innerHTML = cart.map((item, index) => {
-                total += item.price;
-                return `
-                    <div class="flex justify-between items-center bg-white p-3 rounded-lg border border-gray-100 shadow-2xs">
-                        <div>
-                            <h4 class="font-semibold text-sm">${item.name}</h4>
-                            <p class="text-xs text-gray-500">$${item.price.toFixed(2)}</p>
-                        </div>
-                        <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-sm"><i class="fa-solid fa-trash"></i></button>
+    <!-- Visual Portfolio Section -->
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <h2 class="text-center text-4xl md:text-5xl attractive-header text-teal-900 mb-16">
+            <span class="en">Our <span class="gold-gradient text-transparent bg-clip-text italic">Transformation</span> Results</span>
+            <span class="lt">Mūsų <span class="gold-gradient text-transparent bg-clip-text italic">Rezultatai</span></span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12">
+            
+            <!-- Item 1 -->
+            <div class="rounded-3xl overflow-hidden shadow-2xl bg-white border border-gray-100">
+                <div class="grid grid-cols-2">
+                    <div class="relative">
+                        <img src="https://i.postimg.cc/85FCFcpN/17e411d4-e804-47bd-9de3-fa2c0c04d1a0.jpg" alt="Bathroom Before Cleaning" class="w-full h-80 object-cover">
+                        <span class="absolute top-4 left-4 bg-black/80 text-white text-[10px] px-3 py-1 title-display rounded"><span class="en">BEFORE</span><span class="lt">PRIEŠ</span></span>
                     </div>
-                `;
-            }).join('');
+                    <div class="relative">
+                        <img src="https://i.postimg.cc/NfxQjm6N/ee82ec67-2d4d-4957-9fb7-1ed02d117fab.jpg" alt="Bathroom After Cleaning" class="w-full h-80 object-cover border-l-2 border-white">
+                        <span class="absolute top-4 left-4 bg-gold text-black text-[10px] px-3 py-1 title-display rounded shadow"><span class="en">AFTER</span><span class="lt">PO</span></span>
+                    </div>
+                </div>
+                <div class="p-6 text-center attractive-header text-teal-950 bg-gray-50 border-t border-gold pl-0">
+                    <span class="en">Bathroom Restoration</span><span class="lt">Vonios Atstatymas</span>
+                </div>
+            </div>
 
-            totalElement.textContent = `$${total.toFixed(2)}`;
-        }
+            <!-- Item 2 -->
+            <div class="rounded-3xl overflow-hidden shadow-2xl bg-white border border-gray-100">
+                <div class="grid grid-cols-2">
+                    <div class="relative">
+                        <img src="https://i.postimg.cc/s2GF7hW2/02c602d9-d428-45b0-a982-22a9fcdf3bd8.jpg" alt="Office Before Cleaning" class="w-full h-80 object-cover">
+                        <span class="absolute top-4 left-4 bg-black/80 text-white text-[10px] px-3 py-1 title-display rounded"><span class="en">BEFORE</span><span class="lt">PRIEŠ</span></span>
+                    </div>
+                    <div class="relative">
+                        <img src="https://i.postimg.cc/26x0Zk0z/f9edd92a-4c89-48c6-b2e1-a6a9583c1dc9.jpg" alt="Office After Cleaning" class="w-full h-80 object-cover border-l-2 border-white">
+                        <span class="absolute top-4 left-4 bg-gold text-black text-[10px] px-3 py-1 title-display rounded shadow"><span class="en">AFTER</span><span class="lt">PO</span></span>
+                    </div>
+                </div>
+                <div class="p-6 text-center attractive-header text-teal-950 bg-gray-50 border-t border-gold pl-0">
+                    <span class="en">Premium Office Clean</span><span class="lt">Biuro Valymas</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
+    <!-- Footer -->
+    <footer class="bg-black text-white py-20 text-center">
+        <img src="https://i.postimg.cc/SNrph9CJ/1776267111494.png" alt="UrbanCrew Footer Logo" class="h-20 mx-auto mb-8 opacity-80 object-contain">
+        <a href="tel:+37064399422" class="text-3xl title-display gold-gradient text-transparent bg-clip-text hover:tracking-wider transition-all duration-500 inline-block">+370 643 99422</a>
+        <p class="mt-4 title-subline text-gray-500 uppercase text-[10px] tracking-[0.4em]">Vilnius • Professional • Reliable</p>
+    </footer>
 
-        function filterCategory(categoryName) {
-            document.getElementById('section-title').textContent = categoryName + " Services";
-            alert("Filtered view switched to: " + categoryName);
-        }
+    <!-- Translation Engine Script -->
+    <script>
+        function setLanguage(lang) {
+            const body = document.body;
+            const enBtn = document.getElementById('en-btn');
+            const ltBtn = document.getElementById('lt-btn');
 
-        function checkout() {
-            if(cart.length === 0) {
-                alert("Please add services to your cart first.");
-                return;
+            if (lang === 'lt') {
+                body.classList.remove('lang-en');
+                body.classList.add('lang-lt');
+                ltBtn.className = "lang-btn text-gold underline font-bold";
+                enBtn.className = "lang-btn text-gray-400 hover:text-white";
+            } else {
+                body.classList.remove('lang-lt');
+                body.classList.add('lang-en');
+                enBtn.className = "lang-btn text-gold underline font-bold";
+                ltBtn.className = "lang-btn text-gray-400 hover:text-white";
             }
-            alert("Success! Proceeding to pick a date & time slot...");
         }
     </script>
 </body>
